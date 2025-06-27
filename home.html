@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Alphabet Learning Page - Home</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f9ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav.top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+      background-color: #004d40;
+    }
+
+    /* Sidebar Styles */
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #cbf3f1;
+      padding: 20px;
+      position:fixed;
+      height: 100vh;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #00796b;
+      font-weight: 600;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #b2dfdb;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+      padding: 40px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 2.8rem;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    main p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    #homebg {
+      height: 300px;
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .sidebar ul li {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header>
+    <nav class="top-nav">
+      <div class="logo">Alphabet Learning Page</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="registration.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="chart.html">Chart</a></li>
+        <li><a href="individual.html">Individual</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="printable.html">Printable</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <h1>Welcome to the Alphabet Learning Page!</h1>
+      <img id="homebg" src="img/homebg.jpeg" alt="home-bg">
+      <p>
+        This website helps you learn the alphabet through charts, pronunciation, videos, and fun letter-by-letter
+        activities.
+        Use the navigation menu above to begin your journey through the ABCs!
+      </p>
+    </main>
+  </div>
+
+</body>
+
+</html>

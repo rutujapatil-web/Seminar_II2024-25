@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Printable A to Z Alphabet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: white;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav.top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+      background-color: #004d40;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #cbf3f1;
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #00796b;
+      font-weight: 600;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #b2dfdb;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 2.8rem;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    .alphabet-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 30px;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
+    .letter-box {
+      font-size: 64px;
+      font-weight: bold;
+      border: 2px solid #ccc;
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1f618d;
+    }
+
+    @media print {
+      button {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <nav class="top-nav">
+      <div class="logo">Alphabet Learning Page</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="registration.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="chart.html">Chart</a></li>
+        <li><a href="individual.html">Individual</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="printable.html" class="active">Printable</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <h1>Printable Alphabet Chart (A to Z)</h1>
+      <div class="alphabet-grid" id="grid"></div>
+      <button onclick="window.print()">🖨️ Print This Page</button>
+    </main>
+  </div>
+
+  <script>
+    const grid = document.getElementById("grid");
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    letters.split('').forEach(letter => {
+      const div = document.createElement('div');
+      div.className = 'letter-box';
+      div.textContent = letter;
+      grid.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>

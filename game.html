@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Find the Letter Game</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fefae0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav.top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+      background-color: #004d40;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #cbf3f1;
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #00796b;
+      font-weight: 600;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #b2dfdb;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+      text-align: center;
+    }
+
+    main h1 {
+      font-size: 2.8rem;
+      color: #ff6f00;
+      margin-bottom: 20px;
+    }
+
+    #question {
+      font-size: 1.8em;
+      margin: 30px 0;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .option-btn {
+      background-color: #90caf9;
+      border: none;
+      padding: 20px;
+      font-size: 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 70px;
+    }
+
+    .option-btn:hover {
+      background-color: #64b5f6;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      main {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Navigation Bar -->
+  <header>
+    <nav class="top-nav">
+      <div class="logo">Alphabet Learning Page</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="registration.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="chart.html">Chart</a></li>
+        <li><a href="individual.html">Individual</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="game.html" class="active">Game</a></li>
+        <li><a href="printable.html">Printable</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Game Content -->
+    <main>
+      <h1>🔤 Find the Letter!</h1>
+      <div id="question">Click the letter: <strong id="target-letter">A</strong></div>
+
+      <div class="options" id="options-container">
+        <!-- Buttons inserted by JS -->
+      </div>
+
+      <div id="result"></div>
+    </main>
+  </div>
+
+  <script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+    const targetLetterEl = document.getElementById("target-letter");
+    const optionsContainer = document.getElementById("options-container");
+    const resultEl = document.getElementById("result");
+
+    function getRandomLetter() {
+      return letters[Math.floor(Math.random() * letters.length)];
+    }
+
+    function generateGame() {
+      resultEl.textContent = "";
+      const correctLetter = getRandomLetter();
+      targetLetterEl.textContent = correctLetter;
+
+      const options = new Set();
+      options.add(correctLetter);
+      while (options.size < 4) {
+        options.add(getRandomLetter());
+      }
+
+      const optionList = Array.from(options).sort(() => Math.random() - 0.5);
+      optionsContainer.innerHTML = "";
+
+      optionList.forEach(letter => {
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.className = "option-btn";
+        btn.onclick = () => {
+          if (letter === correctLetter) {
+            resultEl.style.color = "green";
+            resultEl.textContent = "🎉 Correct!";
+            setTimeout(generateGame, 1000);
+          } else {
+            resultEl.style.color = "red";
+            resultEl.textContent = "❌ Try again!";
+          }
+        };
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    generateGame();
+  </script>
+</body>
+</html>
