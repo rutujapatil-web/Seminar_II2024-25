@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alphabet Tracing A–Z</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1faee;
+    }
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    /* Navbar */
+    .top-nav {
+      background-color: #a8dadc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #1d3557;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #1d3557;
+      font-weight: bold;
+    }
+
+    /* Container layout */
+    .container {
+      display: flex;
+      min-height: calc(100vh - 70px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 200px;
+      background-color: #cbf3f1;
+      padding: 20px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .sidebar ul li a.active {
+      color: #ff006e;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    #letter {
+      font-size: 10rem;
+      color: #d3d3d3;
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    canvas {
+      border: 2px solid #1d3557;
+      margin-top: 160px;
+      background-color: transparent;
+      z-index: 1;
+      position: relative;
+    }
+
+    .controls {
+      margin: 20px;
+    }
+
+    .controls button {
+      padding: 10px 15px;
+      margin: 10px;
+      font-size: 1rem;
+      background-color: #fcbf49;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #f77f00;
+      color: white;
+    }
+
+    .letter-buttons {
+      margin: 20px auto;
+      max-width: 700px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .letter-buttons button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 1.2rem;
+      background-color: #ffd6a5;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .letter-buttons button:hover {
+      background-color: #ffadad;
+    }
+
+    footer {
+      background-color: #a8dadc;
+      color: #1d3557;
+      text-align: center;
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="top-nav">
+    <div class="logo">Alphabet Learning Page</div>
+    <ul class="nav-links">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="registration.html">Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <!-- Layout -->
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="chart.html">Chart</a></li>
+        <li><a href="individual.html">Individual</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="printable.html">Printable</a></li>
+        <li><a href="tracing.html" class="active">Tracing</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <h2>Trace the Alphabet – A to Z</h2>
+      <div id="letter">A</div>
+      <canvas id="tracingCanvas" width="600" height="400"></canvas>
+
+      <div class="controls">
+        <button onclick="clearCanvas()">🧹 Clear</button>
+        <button onclick="playSound()">🔊 Hear Letter</button>
+      </div>
+
+      <div class="letter-buttons" id="letterButtons"></div>
+
+      <audio id="letterSound" src=""></audio>
+    </div>
+  </div>
+
+  <footer>&copy; 2025 Alphabet Tracing for Kids</footer>
+
+  <!-- JavaScript -->
+  <script>
+    const canvas = document.getElementById('tracingCanvas');
+    const ctx = canvas.getContext('2d');
+    const letterDisplay = document.getElementById('letter');
+    const soundPlayer = document.getElementById('letterSound');
+    const letterButtonsContainer = document.getElementById('letterButtons');
+
+    let currentLetter = 'A';
+    let drawing = false;
+
+    // Drawing on canvas
+    canvas.addEventListener('mousedown', () => drawing = true);
+    canvas.addEventListener('mouseup', () => drawing = false);
+    canvas.addEventListener('mouseleave', () => drawing = false);
+    canvas.addEventListener('mousemove', (e) => {
+      if (!drawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      ctx.fillStyle = '#ff006e';
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Clear canvas
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Play sound
+    function playSound() {
+      soundPlayer.src = `sounds/${currentLetter}.mp3`; // Add your sound files here
+      soundPlayer.play();
+    }
+
+    // Set letter
+    function setLetter(letter) {
+      currentLetter = letter;
+      letterDisplay.textContent = letter;
+      clearCanvas();
+    }
+
+    // Generate A-Z buttons
+    function createLetterButtons() {
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      letters.forEach(letter => {
+        const btn = document.createElement('button');
+        btn.textContent = letter;
+        btn.onclick = () => setLetter(letter);
+        letterButtonsContainer.appendChild(btn);
+      });
+    }
+
+    // Init
+    createLetterButtons();
+    setLetter('A');
+  </script>
+
+</body>
+</html>
