@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Alphabet Chart</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fef8e7;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #00796b;
+      color: white;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav.top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    ul.nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    ul.nav-links li a:hover,
+    ul.nav-links li a.active {
+      background-color: #004d40;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #cbf3f1;
+      padding: 20px;
+      position: fixed;
+      height: 100vh;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #00796b;
+      font-weight: 600;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background-color: #b2dfdb;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      text-align: center;
+      margin-left: 220px;
+    }
+
+    main h1 {
+      color: #ff6600;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    .chart {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .box {
+      background-color: #ffffff;
+      border: 2px solid #ffc107;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .letter {
+      font-size: 28px;
+      color: #333;
+    }
+
+    .word {
+      font-size: 16px;
+      color: #777;
+    }
+
+    .image {
+      margin-top: 10px;
+      font-size: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .sidebar ul li {
+        margin-bottom: 0;
+      }
+
+      main {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header>
+    <nav class="top-nav">
+      <div class="logo">Alphabet Learning Page</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="registration.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <ul>
+        <li><a href="chart.html">Chart</a></li>
+        <li><a href="individual.html">Individual</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="video.html">Video</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="printable.html">Printable</a></li>
+        <li><a href="tracing.html">Tracing</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </aside>
+
+   <!-- Main Content -->
+<main>
+  <h1>🔤 Alphabet Chart</h1>
+  <div class="chart">
+    <div class="box"><div class="letter">A a</div><div class="word">Apple</div><div class="image">🍎</div></div>
+    <div class="box"><div class="letter">B b</div><div class="word">Ball</div><div class="image">⚽</div></div>
+    <div class="box"><div class="letter">C c</div><div class="word">Cat</div><div class="image">🐱</div></div>
+    <div class="box"><div class="letter">D d</div><div class="word">Dog</div><div class="image">🐶</div></div>
+    <div class="box"><div class="letter">E e</div><div class="word">Elephant</div><div class="image">🐘</div></div>
+    <div class="box"><div class="letter">F f</div><div class="word">Fish</div><div class="image">🐟</div></div>
+    <div class="box"><div class="letter">G g</div><div class="word">Grapes</div><div class="image">🍇</div></div>
+    <div class="box"><div class="letter">H h</div><div class="word">House</div><div class="image">🏠</div></div>
+    <div class="box"><div class="letter">I i</div><div class="word">Ice Cream</div><div class="image">🍦</div></div>
+    <div class="box"><div class="letter">J j</div><div class="word">Juice</div><div class="image">🧃</div></div>
+    <div class="box"><div class="letter">K k</div><div class="word">Kite</div><div class="image">🪁</div></div>
+    <div class="box"><div class="letter">L l</div><div class="word">Lion</div><div class="image">🦁</div></div>
+    <div class="box"><div class="letter">M m</div><div class="word">Monkey</div><div class="image">🐒</div></div>
+    <div class="box"><div class="letter">N n</div><div class="word">Nest</div><div class="image">🪺</div></div>
+    <div class="box"><div class="letter">O o</div><div class="word">Orange</div><div class="image">🍊</div></div>
+    <div class="box"><div class="letter">P p</div><div class="word">Parrot</div><div class="image">🦜</div></div>
+    <div class="box"><div class="letter">Q q</div><div class="word">Queen</div><div class="image">👑</div></div>
+    <div class="box"><div class="letter">R r</div><div class="word">Rabbit</div><div class="image">🐰</div></div>
+    <div class="box"><div class="letter">S s</div><div class="word">Sun</div><div class="image">☀️</div></div>
+    <div class="box"><div class="letter">T t</div><div class="word">Tiger</div><div class="image">🐯</div></div>
+    <div class="box"><div class="letter">U u</div><div class="word">Umbrella</div><div class="image">☂️</div></div>
+    <div class="box"><div class="letter">V v</div><div class="word">Van</div><div class="image">🚐</div></div>
+    <div class="box"><div class="letter">W w</div><div class="word">Watch</div><div class="image">⌚</div></div>
+    <div class="box"><div class="letter">X x</div><div class="word">Xylophone</div><div class="image">🎼</div></div>
+    <div class="box"><div class="letter">Y y</div><div class="word">Yogurt</div><div class="image">🥣</div></div>
+    <div class="box"><div class="letter">Z z</div><div class="word">Zebra</div><div class="image">🦓</div></div>
+  </div>
+</main>
+
+
+  <!-- JavaScript: Auto Highlight Current Page -->
+  <script>
+    const currentPath = window.location.pathname.split("/").pop();
+    const topLinks = document.querySelectorAll(".nav-links a");
+    const sideLinks = document.querySelectorAll(".sidebar a");
+
+    topLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+
+    sideLinks.forEach(link => {
+      if (link.getAttribute("href") === currentPath) {
+        link.classList.add("active");
+      }
+    });
+  </script>
+
+</body>
+
+</html>
